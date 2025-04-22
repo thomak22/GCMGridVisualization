@@ -50,10 +50,8 @@
       const mainImage = document.getElementById('mainImage');
 
       function updateImage() {
-        const a = Number(sliderA.value).toFixed(1);
-			  const b = Number(sliderB.value).toFixed(1);/* 
-			          const a = sliderA.value; 
-			          const b = sliderB.value; */
+        const a = sliderA.value;
+        const b = sliderB.value;
 
         const parts = Array.from(toggles).map(toggle =>
           toggle.checked ? toggle.dataset.option1 : toggle.dataset.option2
