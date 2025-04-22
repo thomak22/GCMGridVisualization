@@ -6,47 +6,75 @@
         font-family: sans-serif;
         padding: 20px;
       }
-      .img-container {
-        margin-top: 20px;
-      }
       img {
-        margin-right: 10px;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
         transition: all 0.3s ease;
       }
     </style>
   </head>
   <body>
-    <h2>Interactive Image Controller</h2>
+    <!-- <h2>GCM grid visualization</h2> -->
 
     <label>
-      <input type="checkbox" id="img1Toggle" checked> Show Image 1
+      <input type="checkbox" class="toggle-box" data-option1="cloudy" data-option2="clear" checked>
+      Cloudy
     </label><br>
+
     <label>
-      <input type="checkbox" id="img2Toggle" checked> Show Image 2
+      <input type="checkbox" class="toggle-box" data-option1="3G" data-option2="0G" checked>
+      Dragged
     </label><br><br>
 
-    <label>Image Size:
-      <input type="range" id="sizeSlider" min="50" max="300" value="150">
-    </label>
+    <label>T_irr:
+      <input type="range" id="sliderA" min="1000" max="3250" value="1500" step="250">
+      <span id="valA">1</span>
+    </label><br>
 
-    <div class="img-container">
-      <img id="img1" src="https://via.placeholder.com/150/ff7f7f" width="150">
-      <img id="img2" src="https://via.placeholder.com/150/7f7fff" width="150">
+    <label>log(P(bar)):
+      <input type="range" id="sliderB" min="-3" max="0" value="-2" step="0.5">
+      <span id="valB">1</span>
+    </label><br><br>
+    
+    <div>
+      <img id="mainImage" src="" width="250" alt="Dynamic image">
     </div>
 
     <script>
-      const img1 = document.getElementById("img1");
-      const img2 = document.getElementById("img2");
-      const img1Toggle = document.getElementById("img1Toggle");
-      const img2Toggle = document.getElementById("img2Toggle");
-      const sizeSlider = document.getElementById("sizeSlider");
+      const toggles = document.querySelectorAll('.toggle-box');
+      const sliderA = document.getElementById('sliderA');
+      const sliderB = document.getElementById('sliderB');
+      const valA = document.getElementById('valA');
+      const valB = document.getElementById('valB');
+      const mainImage = document.getElementById('mainImage');
 
-      img1Toggle.onchange = () => img1.style.display = img1Toggle.checked ? "inline" : "none";
-      img2Toggle.onchange = () => img2.style.display = img2Toggle.checked ? "inline" : "none";
-      sizeSlider.oninput = () => {
-        img1.width = sizeSlider.value;
-        img2.width = sizeSlider.value;
-      };
+      function updateImage() {
+        const a = Number(sliderA.value).toFixed(1);
+			  const b = Number(sliderB.value).toFixed(1);/* 
+			          const a = sliderA.value; 
+			          const b = sliderB.value; */
+
+        const parts = Array.from(toggles).map(toggle =>
+          toggle.checked ? toggle.dataset.option1 : toggle.dataset.option2
+        );
+
+        const filename = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}.png`;
+        mainImage.src = filename;
+        mainImage.alt = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}.png`;
+      }
+
+      toggles.forEach(t => t.addEventListener('change', updateImage));
+      sliderA.addEventListener('input', () => {
+        valA.textContent = sliderA.value;
+        updateImage();
+      });
+      sliderB.addEventListener('input', () => {
+        valB.textContent = Number(sliderB.value).toFixed(1);
+        updateImage();
+      });
+
+      updateImage(); // Initial load
     </script>
   </body>
 </html>
