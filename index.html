@@ -1,44 +1,34 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 20px;
-      }
-      img {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-    </style>
-  </head>
+  <link rel="stylesheet" href="style.css">
   <body>
     <!-- <h2>GCM grid visualization</h2> -->
-
+    
+<div class="checkbox-row">
     <label>
-      <input type="checkbox" class="toggle-box" data-option1="cloudy" data-option2="clear" checked>
+      <input type="checkbox" class="toggle-box" data-option1="cloudy" data-option2="clear" unchecked>
       Cloudy
-    </label><br>
+    </label>
 
     <label>
-      <input type="checkbox" class="toggle-box" data-option1="3G" data-option2="0G" checked>
+      <input type="checkbox" class="toggle-box" data-option1="3G" data-option2="0G" unchecked>
       Dragged
-    </label><br><br>
+    </label>
+</div>
 
     <label>T_irr:
-      <input type="range" id="sliderA" min="1000" max="3250" value="1500" step="250">
+      <input type="range" id="sliderA" min="1000" max="3250" value="1000" step="250">
       <span id="valA">1</span>
     </label><br>
 
     <label>log(P(bar)):
-      <input type="range" id="sliderB" min="-3" max="0" value="-2" step="0.5">
+      <input type="range" id="sliderB" min="-3" max="0" value="-3" step="0.5">
       <span id="valB">1</span>
     </label><br><br>
     
     <div>
-      <img id="mainImage" src="" width="250" alt="Dynamic image">
+      <img id="mainImage" src="" width="500" alt="Dynamic image">
     </div>
 
     <script>
