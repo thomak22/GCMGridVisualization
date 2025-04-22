@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .img-container {
+        margin-top: 20px;
+      }
+      img {
+        margin-right: 10px;
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Interactive Image Controller</h2>
+
+    <label>
+      <input type="checkbox" id="img1Toggle" checked> Show Image 1
+    </label><br>
+    <label>
+      <input type="checkbox" id="img2Toggle" checked> Show Image 2
+    </label><br><br>
+
+    <label>Image Size:
+      <input type="range" id="sizeSlider" min="50" max="300" value="150">
+    </label>
+
+    <div class="img-container">
+      <img id="img1" src="https://via.placeholder.com/150/ff7f7f" width="150">
+      <img id="img2" src="https://via.placeholder.com/150/7f7fff" width="150">
+    </div>
+
+    <script>
+      const img1 = document.getElementById("img1");
+      const img2 = document.getElementById("img2");
+      const img1Toggle = document.getElementById("img1Toggle");
+      const img2Toggle = document.getElementById("img2Toggle");
+      const sizeSlider = document.getElementById("sizeSlider");
+
+      img1Toggle.onchange = () => img1.style.display = img1Toggle.checked ? "inline" : "none";
+      img2Toggle.onchange = () => img2.style.display = img2Toggle.checked ? "inline" : "none";
+      sizeSlider.oninput = () => {
+        img1.width = sizeSlider.value;
+        img2.width = sizeSlider.value;
+      };
+    </script>
+  </body>
+</html>
