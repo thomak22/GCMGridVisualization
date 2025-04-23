@@ -15,6 +15,11 @@
       <input type="checkbox" class="toggle-box" data-option1="3G" data-option2="0G" unchecked>
       Dragged
     </label>
+    
+    <label>
+      <input type="checkbox" class="toggle-box" data-option1="wwinds" data-option2="nwinds" checked>
+      Overlay winds?
+    </label>
 </div>
 
     <label>T_irr (K):
@@ -47,9 +52,9 @@
           toggle.checked ? toggle.dataset.option1 : toggle.dataset.option2
         );
 
-        const filename = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}_wwinds.png`;
+        const filename = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}_${parts[2]}.png`;
         mainImage.src = filename;
-        mainImage.alt = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}.png`;
+        mainImage.alt = `images/${a}K_${parts[0]}_${parts[1]}_1e${Number(b).toFixed(1)}_${parts[2]}.png`;
       }
 
       toggles.forEach(t => t.addEventListener('change', updateImage));
