@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-
 <html>
-  <link rel="stylesheet" href="style.css">
-  <body>
     <!-- <h2>GCM grid visualization</h2> -->
     
 <div class="checkbox-row">
     <label>
-      <input type="checkbox" class="toggle-box" data-option1="cloudy" data-option2="clear" unchecked>
+      <input type="checkbox" class="toggle-box" data-option1="cloudy" data-option2="clear" checked>
       Cloudy
     </label>
 
@@ -28,7 +25,7 @@
     </label>
 
     <label>log(P(bar)):
-      <input type="range" id="sliderB" min="-3" max="0" value="-3" step="0.5">
+      <input type="range" id="sliderB" min="-3" max="0" value="-2" step="0.5">
       <span id="valB">1</span>
     </label>
     
@@ -47,6 +44,9 @@
       function updateImage() {
         const a = sliderA.value;
         const b = sliderB.value;
+        // ✅ Update label text values here
+  			valA.textContent = a;
+  			valB.textContent = Number(b).toFixed(1);
 
         const parts = Array.from(toggles).map(toggle =>
           toggle.checked ? toggle.dataset.option1 : toggle.dataset.option2
@@ -70,4 +70,5 @@
       updateImage(); // Initial load
     </script>
   </body>
+
 </html>
